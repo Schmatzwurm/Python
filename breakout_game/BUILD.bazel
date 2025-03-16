@@ -1,0 +1,9 @@
+load("@my_deps//:requirements.bzl", "requirement")
+
+py_binary(
+    name = "breakout_game",
+    srcs = ["breakout_game.py"],
+    deps = [
+       requirement("pygame")
+    ],
+)

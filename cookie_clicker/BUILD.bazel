@@ -1,0 +1,9 @@
+load("@my_deps//:requirements.bzl", "requirement")
+
+py_binary(
+    name = "cookie_clicker",
+    srcs = ["cookie_clicker.py"],
+    deps = [
+       requirement("pygame")
+    ],
+)
