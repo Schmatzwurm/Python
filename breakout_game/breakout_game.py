@@ -5,10 +5,10 @@ pygame.init()
 # unser Multiplikator 
 MULTIPLIKATOR = 20
 
-verloren = pygame.mixer.Sound('python-lernen/Fart.mp3')
-Ende = pygame.mixer.Sound('python-lernen/Augh.mp3')
-winner = pygame.mixer.Sound('python-lernen/winner.mp3')
-trigger = pygame.mixer.Sound('python-lernen/Treffer.mp3')
+verloren = pygame.mixer.Sound('res/fart.mp3')
+Ende = pygame.mixer.Sound('res/augh.mp3')
+winner = pygame.mixer.Sound('res/winner.mp3')
+trigger = pygame.mixer.Sound('res/hit.mp3')
 
 # Spielfeld erzeugen über Berechnung
 fenster = pygame.display.set_mode((20 * MULTIPLIKATOR, 30 * MULTIPLIKATOR))

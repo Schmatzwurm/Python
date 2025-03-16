@@ -104,8 +104,8 @@ windowSurface = pygame.display.set_caption("Cash-Clicker")
 
 text_font = pygame.font.Font(None,50)
 title = text_font.render("Cash Clicker", True, "#000000")
-background = pygame.image.load("background.png").convert()
-click_sound = pygame.mixer.Sound("Mouse.mp3")
+background = pygame.image.load("res/background.png").convert()
+click_sound = pygame.mixer.Sound("res/mouse.mp3")
 clock = pygame.time.Clock()
 
 #for game.auto_clicker_amount
