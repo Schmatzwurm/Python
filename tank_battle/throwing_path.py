@@ -3,18 +3,20 @@ import math
 
 class ThrowingPath:
 
-    def __init__(self, angle, start_pos, min_pos=(0,0), max_pos=(1000, 1000)):
-        self.angle = angle
-        self.start_pos = start_pos
+    def __init__(self, min_pos=(0,0), max_pos=(1000, 1000)):
+        self.angle = 0
+        self.start_time = None
         self.min_pos = min_pos
         self.max_pos = max_pos
-        self.start_time = None
+        self.start_pos = [0, 0]
         self.velocity = [0, 0]
         self.gravity = 9.81  # Gravity constant
 
 
-    def start(self, velocity):
+    def throw(self, velocity, angle, start_pos):
         self.start_time = time.time()
+        self.angle = angle
+        self.start_pos = start_pos
         self.velocity[0] = velocity * math.cos(self.angle)
         self.velocity[1] = velocity * math.sin(self.angle)
 
