@@ -5,7 +5,7 @@ from tank_battle import throwing_path as tp
 class ThrowingPathTest(unittest.TestCase):
 
     def test_x_pos_no_start(self):
-        tp1 = tp.ThrowingPath(0, (2,0))
+        tp1 = tp.ThrowingPath(0, (2,2))
         pos = tp1.get_pos(0.001)
         self.assertAlmostEqual(2, pos[0], 2)
 

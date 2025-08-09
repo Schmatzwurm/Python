@@ -19,6 +19,12 @@ class ThrowingPath:
         self.velocity[1] = velocity * math.sin(self.angle)
 
 
+    def update_and_get(self):
+        current_time = time.time()
+        elapsed_time = current_time - self.start_time()
+        return self.get_pos(elapsed_time)
+    
+
     def get_pos(self, elapsed_time):
         if self.velocity is None:
             return self.start_pos
