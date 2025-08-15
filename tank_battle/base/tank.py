@@ -4,16 +4,16 @@ import utils
 
 class Tank:
     def __init__(self, screen):
-        base_dir = utils.get_base_dir()
-        image = pygame.image.load(file="{}/resources/tank.png".format(base_dir))
-        self.image_right = pygame.transform.scale(image, (180, 150))
-        self.image_left = pygame.transform.flip(self.image_right, True, False)
-        self.image = self.image_right
-        self.screen = screen
+        image_file_path = utils.get_res_file_path('tank.png')
+        image = pygame.image.load(image_file_path)
+        self._image_right = pygame.transform.scale(image, (180, 150))
+        self._image_left = pygame.transform.flip(self.image_right, True, False)
+        self._image = self.image_right
+        self._screen = screen
         
 
     def draw(self, x, y):
-        self.screen.blit(self.image, (x, y))
+        self._screen.blit(self._image, (x, y))
 
 
     

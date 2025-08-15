@@ -92,5 +92,3 @@ def main():
         clock.tick(100)
     pygame.quit()
 
-if __name__ == "__main__":
-    main()
