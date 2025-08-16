@@ -1,4 +1,5 @@
 import pygame
+import math
 
 from ..base import utils
 
@@ -22,9 +23,37 @@ class Tank:
         self._min_pos_y = min_pos[1]
         self._max_pos_x = max_pos[0]
         self._max_pos_y = max_pos[1]
+        self._pipe_angle = 360
+        self._pipe_length = 70
+
 
     def draw(self):
         self._screen.blit(self._image, (self._pos_x, self._pos_y))
+        angle_rad = math.radians(self._pipe_angle)
+        start_pos_y = self._pos_y + 62
+        if self._reverse:
+            start_pos_x = self._pos_x + 72
+        else:
+            start_pos_x = self._pos_x + 105         
+        end_pos = (
+            start_pos_x + self._pipe_length * math.cos(angle_rad),
+            start_pos_y + self._pipe_length * math.sin(angle_rad)
+        )
+        start_pos = (start_pos_x, start_pos_y)
+        pygame.draw.line(self._screen, (0, 0, 0), start_pos, end_pos, 10)
+
+
+
+    def pipe_angle(self, angle):
+        if angle > 90:
+            angle = 90
+        elif angle < 0:
+            angle = 0
+        if self._reverse:
+            angle = 180 + angle
+        else:
+            angle = 360 - angle
+        self._pipe_angle = angle
 
     def move(self, delta_x=0, delta_y=0):
         if self._reverse:

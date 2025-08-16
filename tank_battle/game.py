@@ -24,22 +24,21 @@ class Game:
         back = background.Background(self._screen)
         back.draw()
 
-      
-
         # Musik nur starten, wenn sie nicht läuft
         if not pygame.mixer.music.get_busy():
             pygame.mixer.music.load(utils.get_res_file_path('game_music.mp3'))
             pygame.mixer.music.play(-1)
 
         t1 = tank.Tank(self._screen, init_pos=(0,400), max_pos=(1100, 400), reverse=False)
+        t1.pipe_angle(60)
         t1.draw()
 
         t2 = tank.Tank(self._screen, init_pos=(1100, 400), max_pos=(1100, 400), reverse=True)
+        t2.pipe_angle(30)
         t2.draw()
 
         while not abort:
             back.draw()
-            
             
             for e in pygame.event.get():
                 if e.type is pygame.QUIT:
