@@ -1,4 +1,4 @@
-import utils
+from ..base import utils
 
 class Menu:
     def __init__(self, screen):
