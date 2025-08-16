@@ -26,9 +26,6 @@ def main():
             self._image_left = pygame.transform.flip(self._image_right, True, False)
             self._image = self._image_right
             self._inverted = inverted
-            
-        def move(self, delta_x, delta_y):
-             if delta_x < 0:
                   
 
         def draw(self, x, y):
