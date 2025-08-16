@@ -20,12 +20,16 @@ def main():
     
    
     class Tank:
-        def __init__(self):
+        def __init__(self, inverted=False):
             image = pygame.image.load(file="{}/resources/tank.png".format(script_dir))
-            self.image_right = pygame.transform.scale(image, (180, 150))
-            self.image_left = pygame.transform.flip(self.image_right, True, False)
-            self.image = self.image_right
+            self._image_right = pygame.transform.scale(image, (180, 150))
+            self._image_left = pygame.transform.flip(self._image_right, True, False)
+            self._image = self._image_right
+            self._inverted = inverted
             
+        def move(self, delta_x, delta_y):
+             if delta_x < 0:
+                  
 
         def draw(self, x, y):
             screen.blit(self.image, (x, y))
@@ -83,10 +87,6 @@ def main():
                 tank_x = 0
         elif tank_x > 1100:
                 tank_x = 1100
-
-        
-        
-
 
         pygame.display.update()
         clock.tick(100)

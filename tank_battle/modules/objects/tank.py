@@ -1,6 +1,6 @@
 import pygame
 
-import utils
+from ..base import utils
 
 class Tank:
     def __init__(self, screen):
