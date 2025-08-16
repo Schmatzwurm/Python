@@ -7,8 +7,8 @@ class Tank:
         image_file_path = utils.get_res_file_path('tank.png')
         image = pygame.image.load(image_file_path)
         self._image_right = pygame.transform.scale(image, (180, 150))
-        self._image_left = pygame.transform.flip(self.image_right, True, False)
-        self._image = self.image_right
+        self._image_left = pygame.transform.flip(self._image_right, True, False)
+        self._image = self._image_right
         self._screen = screen
         
 

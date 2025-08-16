@@ -1,12 +1,12 @@
 import modules
 
+from modules.objects import background
+from modules.objects import tank
+
 import pygame
-import time
+import traceback
 
 from pygame import display
-from modules.base import utils
-from modules.objects import tank
-from modules.objects import background
 
 # Must come from options later
 SCREEN_WIDTH = 1280
@@ -19,10 +19,11 @@ class Game:
 
     def loop(self):
         abort = False
-        background = background.Background(self._screen)
-        background.draw()
+        back = background.Background(self._screen)
+        back.draw()
 
-        tank = tank.Tank(self._screen)
+        t1 = tank.Tank(self._screen)
+        t1.draw(0, 0)
 
         while not abort:
             for e in pygame.event.get():
@@ -38,13 +39,14 @@ def main():
     
     clock = pygame.Clock()
     screen = display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+    #screen.get_height
     game = Game(screen, clock)
 
     try:
         game.loop()
-    except:
-        pass
-    pass
+    except Exception as e:
+        print("Exception occurred: {}".format(e))
+        traceback.print_exc()
 
     pygame.quit()
 

@@ -7,7 +7,7 @@ class Background:
         image_file_path = utils.get_res_file_path('landscape.jpg')
         image = pygame.image.load(file=image_file_path)
         self._image = pygame.transform.scale(image, 
-            (screen.get_width(), screen.get_heighth()))
+            (screen.get_width(), screen.get_height()))
         self._screen = screen
         
     def draw(self):
