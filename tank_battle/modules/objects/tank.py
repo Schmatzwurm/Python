@@ -56,10 +56,6 @@ class Tank:
 
 
     def move(self, delta_x=0, delta_y=0):
-        if self._reverse:
-            delta_x = -delta_x
-            delta_y = -delta_y
-
         new_pos_x = self._pos_x + delta_x
         new_pos_y = self._pos_y + delta_y
 

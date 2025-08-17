@@ -1,8 +1,8 @@
-import modules
 from modules.base import utils
 from modules.objects import background
 from modules.objects import tank
 from modules.menu import main_menu
+from modules.control import controller
 
 import pygame
 import traceback
@@ -19,6 +19,18 @@ class Game:
         self._screen = screen
         self._clock = clock
 
+    def control_tank(self, action, tank):
+
+            if action == 'l':
+                tank.move(-5, 0)
+            elif action == 'r':
+                tank.move(5, 0)
+            elif action == 'u':
+                tank.pipe_angle(5)
+            elif action == 'd':
+                tank.pipe_angle(-5)
+                
+
     def loop(self):
         abort = False
         back = background.Background(self._screen)
@@ -29,13 +41,16 @@ class Game:
             pygame.mixer.music.load(utils.get_res_file_path('game_music.mp3'))
             pygame.mixer.music.play(-1)
 
-        t1 = tank.Tank(self._screen, init_pos=(0,400), max_pos=(1100, 400), reverse=False)
-        t1.pipe_angle(45)
-        t1.draw()
+        ctrl1 = controller.Control(0)
+        ctrl2 = controller.Control(1)
 
-        t2 = tank.Tank(self._screen, init_pos=(1100, 400), max_pos=(1100, 400), reverse=True)
-        t2.pipe_angle(45)
-        t2.draw()
+        tank1 = tank.Tank(self._screen, init_pos=(0,400), max_pos=(1100, 400), reverse=False)
+        tank1.pipe_angle(45)
+        tank1.draw()
+
+        tank2 = tank.Tank(self._screen, init_pos=(1100, 400), max_pos=(1100, 400), reverse=True)
+        tank2.pipe_angle(45)
+        tank2.draw()
 
         while not abort:
             back.draw()
@@ -44,26 +59,11 @@ class Game:
                 if e.type is pygame.QUIT:
                     abort = True
 
-            keys = pygame.key.get_pressed()
-            if keys[pygame.K_a]:
-                t1.move(-5, 0)
-            elif keys[pygame.K_d]:
-                t1.move(5, 0)
-            elif keys[pygame.K_j]:
-                t2.move(5, 0)
-            elif keys[pygame.K_l]:
-                t2.move(-5, 0)
-            elif keys[pygame.K_w]:
-                t1.pipe_angle(5)
-            elif keys[pygame.K_s]:
-                t1.pipe_angle(-5)
-            elif keys[pygame.K_i]:
-                t2.pipe_angle(5)
-            elif keys[pygame.K_k]:
-                t2.pipe_angle(-5)
+            self.control_tank(ctrl1.poll(), tank1)
+            self.control_tank(ctrl2.poll(), tank2)
 
-            t1.draw()
-            t2.draw()
+            tank1.draw()
+            tank2.draw()
 
             pygame.display.update()
             self._clock.tick(100)
