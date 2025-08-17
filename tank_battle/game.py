@@ -3,6 +3,7 @@ from modules.objects import background
 from modules.objects import tank
 from modules.menu import main_menu
 from modules.control import controller
+from modules.base import button
 
 import pygame
 import traceback
@@ -54,10 +55,23 @@ class Game:
 
         while not abort:
             back.draw()
+            mouse_pos = pygame.mouse.get_pos()
+            go_menu = button.Button(image=None, pos=(140, 40), 
+                                 text_input="MAINMENU", font=main_menu.Menu.get_font(30), base_color="Black", hovering_color="Red")
+
+            go_menu.change_color(mouse_pos)
+            go_menu.update(self._screen)
             
             for e in pygame.event.get():
                 if e.type is pygame.QUIT:
                     abort = True
+                
+                if e.type == pygame.MOUSEBUTTONDOWN:
+                    if go_menu.check_for_input(mouse_pos):
+                       pygame.mixer.music.stop()
+                       return
+                    
+
 
             self.control_tank(ctrl1.poll(), tank1)
             self.control_tank(ctrl2.poll(), tank2)
@@ -71,18 +85,20 @@ class Game:
 
 def main():
     pygame.init()
-    pygame.display.set_caption("Schmatzpanzer Battle")
+    pygame.display.set_caption("Schmatztank Battle")
     
     clock = pygame.Clock()
     screen = display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     #screen.get_height
     menu = main_menu.Menu(screen)
-    menu.run()      # Menü anzeigen, bis Play gedrückt wird
+    menu.run()
 
     game = Game(screen, clock)
 
     try:
-        game.loop()
+        while True:
+            game.loop()
+            menu.run()
     except Exception as e:
         print("Exception occurred: {}".format(e))
         traceback.print_exc()

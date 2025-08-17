@@ -33,7 +33,7 @@ class Menu:
 
             mouse_pos = pygame.mouse.get_pos()
 
-            text = Menu.get_font(100).render("MAIN MENU", True, "#b68f40")
+            text = Menu.get_font(65).render("SCHMATZTANK BATTLE", True, "#b68f40")
             rect = text.get_rect(center=(640, 100))
 
             play_button = button.Button(
