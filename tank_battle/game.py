@@ -30,11 +30,11 @@ class Game:
             pygame.mixer.music.play(-1)
 
         t1 = tank.Tank(self._screen, init_pos=(0,400), max_pos=(1100, 400), reverse=False)
-        t1.pipe_angle(60)
+        t1.pipe_angle(45)
         t1.draw()
 
         t2 = tank.Tank(self._screen, init_pos=(1100, 400), max_pos=(1100, 400), reverse=True)
-        t2.pipe_angle(30)
+        t2.pipe_angle(45)
         t2.draw()
 
         while not abort:
@@ -53,7 +53,15 @@ class Game:
                 t2.move(5, 0)
             elif keys[pygame.K_l]:
                 t2.move(-5, 0)
-            
+            elif keys[pygame.K_w]:
+                t1.pipe_angle(5)
+            elif keys[pygame.K_s]:
+                t1.pipe_angle(-5)
+            elif keys[pygame.K_i]:
+                t2.pipe_angle(5)
+            elif keys[pygame.K_k]:
+                t2.pipe_angle(-5)
+
             t1.draw()
             t2.draw()
 
