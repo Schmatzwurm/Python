@@ -44,10 +44,19 @@ class Game:
                 if e.type is pygame.QUIT:
                     abort = True
 
-            t1.move(5, 0)
+            keys = pygame.key.get_pressed()
+            if keys[pygame.K_a]:
+                t1.move(-5, 0)
+            elif keys[pygame.K_d]:
+                t1.move(5, 0)
+            elif keys[pygame.K_j]:
+                t2.move(5, 0)
+            elif keys[pygame.K_l]:
+                t2.move(-5, 0)
+            
             t1.draw()
-            t2.move(5, 0)
             t2.draw()
+
             pygame.display.update()
             self._clock.tick(100)
 
