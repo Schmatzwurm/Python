@@ -21,10 +21,13 @@ class Menu:
 
     def get_font(size): # Returns Press-Start-2P in the desired size
         return pygame.font.Font(utils.get_res_file_path('font.ttf'), size)
+    
+    def get_options(self):
+        return self._options
 
     def run(self):
             # Musik nur starten, wenn sie nicht läuft
-        if not pygame.mixer.music.get_busy():
+        if self._options.get_music_on():
             pygame.mixer.music.load(utils.get_res_file_path('retro.mp3'))
             pygame.mixer.music.play(-1)
 
@@ -61,7 +64,6 @@ class Menu:
                     sys.exit()
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if play_button.check_for_input(mouse_pos):
-                        pygame.mixer.music.stop()
                         return 
                     if options_button.check_for_input(mouse_pos):
                         self._options.run()

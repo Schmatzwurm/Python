@@ -19,6 +19,7 @@ class Game:
     def __init__(self, screen, clock):
         self._screen = screen
         self._clock = clock
+        self._menu = main_menu.Menu(screen)
 
     def control_tank(self, action, tank):
 
@@ -38,7 +39,7 @@ class Game:
         back.draw()
 
         # Musik nur starten, wenn sie nicht läuft
-        if not pygame.mixer.music.get_busy():
+        if self._menu.get_options().get_music_on():
             pygame.mixer.music.load(utils.get_res_file_path('game_music.mp3'))
             pygame.mixer.music.play(-1)
 
@@ -70,8 +71,6 @@ class Game:
                     if go_menu.check_for_input(mouse_pos):
                        pygame.mixer.music.stop()
                        return
-                    
-
 
             self.control_tank(ctrl1.poll(), tank1)
             self.control_tank(ctrl2.poll(), tank2)
@@ -83,27 +82,30 @@ class Game:
             self._clock.tick(100)
 
 
+    def run(self):
+        self._menu.run()
+
+        while True:
+            self.loop()
+            self._menu.run()
+
+
 def main():
     pygame.init()
     pygame.display.set_caption("Schmatztank Battle")
     
-    clock = pygame.Clock()
     screen = display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-    #screen.get_height
-    menu = main_menu.Menu(screen)
-    menu.run()
-
-    game = Game(screen, clock)
-
+    clock = pygame.Clock()
     try:
-        while True:
-            game.loop()
-            menu.run()
+        game = Game(screen, clock)
+        game.run()
+
     except Exception as e:
         print("Exception occurred: {}".format(e))
         traceback.print_exc()
 
     pygame.quit()
+
 
 if __name__ == "__main__":
     main()
