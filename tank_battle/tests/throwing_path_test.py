@@ -1,6 +1,6 @@
 import unittest
 
-from tank_battle.physics import throwing_path
+import modules.physics.throwing_path as throwing_path
 
 class ThrowingPathTest(unittest.TestCase):
 

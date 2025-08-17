@@ -11,5 +11,6 @@
     "python.testing.unittestEnabled": false,
     "python.testing.pytestArgs": [
         "tank_battle"
-    ]
+    ],
+    "python.envFile": "${workspaceFolder}/.env"
 }
