@@ -15,8 +15,9 @@ texts = {
         "language": "SPRACHE:",
         "back": "ZURÜCK",
         "mainmenu": "HAUPTMENÜ",
-        "on": "AN",
-        "off": "AUS",
+        "speech": "DEUTSCH",
+        "choose language": "SPRACHE WÄHLEN",
+
         # ... weitere Texte ...
     },
     "en": {
@@ -29,9 +30,37 @@ texts = {
         "language": "LANGUAGE:",
         "back": "BACK",
         "mainmenu": "MAINMENU",
-        "on": "ON",
-        "off": "OFF",
+        "speech": "ENGLISH",
+        "choose language": "CHOOSE LANGUAGE",
         # ... weitere Texte ...
+    },
+    "es": {
+        "menu_title": "SCHMATZTANK BATTLE",
+        "play": "JUGAR",
+        "options": "OPCIONES",
+        "quit": "SALIR",
+        "music": "MÚSICA:",
+        "fullscreen": "PANTALLA COMPLETA:",
+        "language": "IDIOMA:",
+        "back": "ATRÁS",
+        "mainmenu": "MENÚ PRINCIPAL",
+        "speech": "ESPAÑOL",
+        "choose language": "elegir idioma",
+        # ... más textos ...
+    },
+    "fr": {
+        "menu_title": "SCHMATZTANK BATTLE",
+        "play": "JOUER",
+        "options": "OPTIONS",
+        "quit": "QUITTER",
+        "music": "MUSIQUE:",
+        "fullscreen": "PLEIN ÉCRAN:",
+        "language": "LANGUE:",
+        "back": "RETOUR",
+        "mainmenu": "MENU PRINCIPAL",
+        "speech": "FRANÇAIS",
+        "choose language": "choisir la langue",
+        # ... plus de textes ...
     }
 }
 
