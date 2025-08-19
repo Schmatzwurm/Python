@@ -55,10 +55,13 @@ class Game:
         tank2.draw()
 
         while not abort:
+
+            menu_text = utils.texts[utils.language]["mainmenu"]
+
             back.draw()
             mouse_pos = pygame.mouse.get_pos()
             go_menu = button.Button(image=None, pos=(140, 40), 
-                                 text_input="MAINMENU", font=main_menu.Menu.get_font(30), base_color="Black", hovering_color="Red")
+                                 text_input=menu_text, font=main_menu.Menu.get_font(30), base_color="Black", hovering_color="Red")
 
             go_menu.change_color(mouse_pos)
             go_menu.update(self._screen)

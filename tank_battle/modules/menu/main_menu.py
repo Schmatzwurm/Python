@@ -32,25 +32,41 @@ class Menu:
             pygame.mixer.music.play(-1)
 
         while True:
+           
+            titel = utils.texts[utils.language]["menu_title"]
+            play_text = utils.texts[utils.language]["play"]
+            options_text = utils.texts[utils.language]["options"]
+            quit_text = utils.texts[utils.language]["quit"]
+            
+            
             self._screen.blit(self._background_image, (0, 0))
 
             mouse_pos = pygame.mouse.get_pos()
 
-            text = Menu.get_font(65).render("SCHMATZTANK BATTLE", True, "#b68f40")
+            text = Menu.get_font(65).render(titel, True, "#b68f40")
             rect = text.get_rect(center=(640, 100))
 
+          
+            def scale_button_image(image_path, text, font):
+                image = pygame.image.load(image_path)
+                text_surface = font.render(text, True, "#000000")
+                w = max(image.get_width(), text_surface.get_width() + 40)
+                h = image.get_height()
+                return pygame.transform.scale(image, (w, h))
+
             play_button = button.Button(
-                image=pygame.image.load(utils.get_res_file_path('play_rect.png')), 
-                pos=(640, 250), 
-                text_input="PLAY", font=Menu.get_font(75), base_color="#d7fcd4", hovering_color="White")
+                image=scale_button_image(utils.get_res_file_path('play_rect.png'), play_text, Menu.get_font(75)),
+                pos=(640, 250),
+                text_input=play_text, font=Menu.get_font(75), base_color="#d7fcd4", hovering_color="White")
             options_button = button.Button(
-                image=pygame.image.load(utils.get_res_file_path('options_rect.png')), 
-                pos=(640, 400), 
-                text_input="OPTIONS", font=Menu.get_font(75), base_color="#d7fcd4", hovering_color="White")
+                image=scale_button_image(utils.get_res_file_path('options_rect.png'), options_text, Menu.get_font(75)),
+                pos=(640, 400),
+                text_input=options_text, font=Menu.get_font(75), base_color="#d7fcd4", hovering_color="White")
             quit_button = button.Button(
-                image=pygame.image.load(utils.get_res_file_path('quit_rect.png')), 
-                pos=(640, 550), 
-                text_input="QUIT", font=Menu.get_font(75), base_color="#d7fcd4", hovering_color="White")
+                image=scale_button_image(utils.get_res_file_path('quit_rect.png'), quit_text, Menu.get_font(75)),
+                pos=(640, 550),
+                text_input=quit_text, font=Menu.get_font(75), base_color="#d7fcd4", hovering_color="White")
+            
 
             self._screen.blit(text, rect)
 
