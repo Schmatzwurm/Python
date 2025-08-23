@@ -1,5 +1,5 @@
 {
-    "editor.inlineSuggest.enabled": false,
+    "editor.inlineSuggest.enabled": true,
     "python.testing.unittestArgs": [
         "-v",
         "-s",

@@ -1,4 +1,6 @@
 from modules.base import utils
+from modules.base import options
+from modules.base import translations
 from modules.objects import background
 from modules.objects import tank
 from modules.menu import main_menu
@@ -19,10 +21,13 @@ class Game:
     def __init__(self, screen, clock):
         self._screen = screen
         self._clock = clock
-        self._menu = main_menu.Menu(screen)
+        self._options = options.Options()
+        self._menu = main_menu.MainMenu(screen, self._options)
+
+    def get_options(self):
+        return self._options
 
     def control_tank(self, action, tank):
-
             if action == 'l':
                 tank.move(-5, 0)
             elif action == 'r':
@@ -39,7 +44,7 @@ class Game:
         back.draw()
 
         # Musik nur starten, wenn sie nicht läuft
-        if self._menu.get_options().get_music_on():
+        if self._options.music_enabled():
             pygame.mixer.music.load(utils.get_res_file_path('game_music.mp3'))
             pygame.mixer.music.play(-1)
 
@@ -55,12 +60,11 @@ class Game:
         tank2.draw()
 
         while not abort:
-
-            menu_text = utils.texts[utils.language]["mainmenu"]
-            font = main_menu.Menu.get_font(30)
+            language = self._options.get_language()
+            menu_text = translations.texts[language]["mainmenu"]
+            font = utils.get_font(30)
             text_surface = font.render(menu_text, True, "Black")
-            button_width = max(200, text_surface.get_width() + 40)  # Mindestbreite 200, sonst Textbreite + 40
-
+            button_width = max(200, text_surface.get_width() + 40)
 
             go_menu = button.Button(
                 image=None,
@@ -73,9 +77,6 @@ class Game:
 
             back.draw()
             mouse_pos = pygame.mouse.get_pos()
-            
-            
-            
 
             go_menu.change_color(mouse_pos)
             go_menu.update(self._screen)
@@ -109,6 +110,7 @@ class Game:
 
 def main():
     pygame.init()
+    pygame.mixer.init()
     pygame.display.set_caption("Schmatztank Battle")
     
     screen = display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
