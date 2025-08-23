@@ -1,15 +1,17 @@
-import pygame
-import math
+from .base_object import BaseObject
 
 from ..base import utils
 
-class Tank:
+import pygame
+import math
+
+class Tank(BaseObject):
     def __init__(self, screen, size=(180, 150), 
                  init_pos=(0,0), min_pos=(0,0), max_pos=(100,100), 
                  reverse=False):
-        image_file_path = utils.get_res_file_path('tank.png')
-        image = pygame.image.load(image_file_path)
-        self._image_right = pygame.transform.scale(image, size)
+        super().__init__(screen, 'tank.png')
+
+        self._image_right = pygame.transform.scale(self._image, size)
         self._image_left = pygame.transform.flip(self._image_right, True, False)
         if reverse:
             self._image = self._image_left

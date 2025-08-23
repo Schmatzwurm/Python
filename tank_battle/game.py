@@ -1,9 +1,9 @@
 from modules.base import utils
-from modules.base import options
+from modules.base.options import Options
 from modules.base import translations
 from modules.objects import background
 from modules.objects import tank
-from modules.menu import main_menu
+from modules.menu.main_menu import MainMenu
 from modules.control import controller
 from modules.base import button
 
@@ -21,8 +21,8 @@ class Game:
     def __init__(self, screen, clock):
         self._screen = screen
         self._clock = clock
-        self._options = options.Options()
-        self._menu = main_menu.MainMenu(screen, self._options)
+        self._options = Options()
+        self._menu = MainMenu(screen, self._options)
 
     def get_options(self):
         return self._options

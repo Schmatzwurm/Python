@@ -1,14 +1,12 @@
-import pygame
+from .base_object import BaseObject
 
 from ..base import utils
 
-class Background:
+import pygame
+
+class Background(BaseObject):
     def __init__(self, screen):
-        image_file_path = utils.get_res_file_path('landscape.jpg')
-        image = pygame.image.load(file=image_file_path)
-        self._image = pygame.transform.scale(image, 
-            (screen.get_width(), screen.get_height()))
-        self._screen = screen
+        super().__init__(screen, 'landscape.jpg')
         
     def draw(self):
         self._screen.blit(self._image, (0, 0)) 

@@ -1,5 +1,5 @@
-from . import options_menu
-from . import base_menu
+from .options_menu import OptionsMenu
+from .base_menu import BaseMenu
 
 from ..base import utils
 from ..base import button
@@ -12,10 +12,10 @@ import sys
 pygame.init()
 pygame.mixer.init()
 
-class MainMenu(base_menu.Menu):
+class MainMenu(BaseMenu):
     def __init__(self, screen, options):
         super().__init__(screen, options)
-        self._options_menu = options_menu.OptionsMenu(screen, options)
+        self._options_menu = OptionsMenu(screen, options)
 
 
     def run(self):

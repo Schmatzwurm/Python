@@ -1,4 +1,4 @@
-from . import base_menu
+from .base_menu import BaseMenu
 
 from ..base import utils
 from ..base import button
@@ -7,13 +7,13 @@ from ..base import translations
 import pygame
 import sys
 
-class LanguageMenu(base_menu.Menu):
+
+class LanguageMenu(BaseMenu):
     def __init__(self, screen, options):
         super().__init__(screen, options)
 
     def run(self):
         languages = [("de", "DEUTSCH"), ("en", "ENGLISH"), ("es", "ESPAÑOL"), ("fr", "FRANÇAIS")]
-        self._screen.blit(self._background_image, (0, 0))
         
         while True:
             language = self._options.get_language()

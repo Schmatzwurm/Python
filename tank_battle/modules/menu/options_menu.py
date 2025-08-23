@@ -1,5 +1,5 @@
-from . import base_menu
-from . import language_menu
+from .base_menu import BaseMenu
+from .language_menu import LanguageMenu
 
 from ..base import options
 from ..base import translations
@@ -10,7 +10,7 @@ import pygame
 import sys
 
 
-class OptionsMenu(base_menu.Menu):
+class OptionsMenu(BaseMenu):
     def __init__(self, screen, options):
         super().__init__(screen, options)
     
@@ -110,7 +110,7 @@ class OptionsMenu(base_menu.Menu):
                         self.apply()
 
                     if lng_btn.check_for_input(mouse_pos):
-                        lm = language_menu.LanguageMenu(self._screen, self._options)
+                        lm = LanguageMenu(self._screen, self._options)
                         lm.run()
 
             pygame.display.update()
