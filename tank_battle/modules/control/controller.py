@@ -11,13 +11,15 @@ class Control:
             pygame.K_a: 'l', 
             pygame.K_d: 'r',
             pygame.K_w: 'u',
-            pygame.K_s: 'd', 
+            pygame.K_s: 'd',
+            pygame.K_q: 'shoot',
         },
         { 
             pygame.K_j: 'l', 
             pygame.K_l: 'r',
             pygame.K_i: 'u',
-            pygame.K_k: 'd', 
+            pygame.K_k: 'd',
+            pygame.K_u: 'shoot',
         },
     ]
 

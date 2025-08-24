@@ -24,8 +24,10 @@ class Game:
         self._options = Options()
         self._menu = MainMenu(screen, self._options)
 
+
     def get_options(self):
         return self._options
+
 
     def control_tank(self, action, tank):
             if action == 'l':
@@ -36,6 +38,8 @@ class Game:
                 tank.pipe_angle(5)
             elif action == 'd':
                 tank.pipe_angle(-5)
+            elif action == 'shoot':
+                tank.shoot()
                 
 
     def loop(self):

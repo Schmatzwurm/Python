@@ -1,4 +1,5 @@
 from .base_object import BaseObject
+from .grenade import Grenade
 
 from ..base import utils
 
@@ -21,9 +22,12 @@ class Tank(BaseObject):
         self._max_pos_y = max_pos[1]
         self._pipe_angle = 0
         self._pipe_length = 70
+        self._grenade = Grenade(screen)
 
 
     def draw(self):
+        self._grenade.draw()
+
         self._screen.blit(self._image, (self._pos_x, self._pos_y))
         start_pos_y = self._pos_y + 62
         if self._reverse:
@@ -67,4 +71,8 @@ class Tank(BaseObject):
 
         self._pos_x = new_pos_x
         self._pos_y = new_pos_y
-    
+
+
+    def shoot(self):
+        self._grenade.shoot((self._pos_x + 100, self._pos_y + 62), 0)
+        
