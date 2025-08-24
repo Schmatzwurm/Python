@@ -9,15 +9,9 @@ class Tank(BaseObject):
     def __init__(self, screen, size=(180, 150), 
                  init_pos=(0,0), min_pos=(0,0), max_pos=(100,100), 
                  reverse=False):
-        super().__init__(screen, 'tank.png')
-
-        self._image_right = pygame.transform.scale(self._image, size)
-        self._image_left = pygame.transform.flip(self._image_right, True, False)
+        super().__init__(screen, size, 'tank.png')
         if reverse:
-            self._image = self._image_left
-        else:
-            self._image = self._image_right
-        self._screen = screen
+            self._image = pygame.transform.flip(self._image, True, False)
         self._reverse = reverse
         self._pos_x = init_pos[0]
         self._pos_y = init_pos[1]
