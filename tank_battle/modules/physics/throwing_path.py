@@ -33,7 +33,7 @@ class ThrowingPath:
 
     def update_and_get(self):
         if self._start_time is None:
-            return self._start_pos
+            return None
         current_time = time.time()
         elapsed_time = self._time_factor * (current_time - self._start_time)
         return self.get_pos(elapsed_time)
