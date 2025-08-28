@@ -8,7 +8,7 @@ import math
 
 class Tank(BaseObject):
     def __init__(self, screen, size=(180, 150), 
-                 init_pos=(0,0), min_pos=(0,0), max_pos=(100,100), 
+                 init_pos=(0,0), min_pos=(0,0), max_pos=(1280,720), 
                  reverse=False):
         super().__init__(screen, size, 'tank.png')
         if reverse:
@@ -22,7 +22,7 @@ class Tank(BaseObject):
         self._max_pos_y = max_pos[1]
         self._pipe_angle = 0
         self._pipe_length = 70
-        self._grenade = Grenade(screen, backfire=reverse)
+        self._grenade = Grenade(screen, min_pos=(0,0), max_pos=(1280,520), backfire=reverse)
 
 
     def draw(self):
@@ -74,5 +74,5 @@ class Tank(BaseObject):
 
 
     def shoot(self):
-        self._grenade.shoot((self._pos_x + 100, self._pos_y + 62), 0)
+        self._grenade.shoot((self._pos_x + 100, self._pos_y + 62), self._pipe_angle)
         
