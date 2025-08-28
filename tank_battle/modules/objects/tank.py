@@ -4,7 +4,7 @@ from .grenade import Grenade
 from ..base import utils
 
 import pygame
-import math
+import numpy
 
 class Tank(BaseObject):
     def __init__(self, screen, size=(180, 150), 
@@ -20,8 +20,9 @@ class Tank(BaseObject):
         self._min_pos_y = min_pos[1]
         self._max_pos_x = max_pos[0]
         self._max_pos_y = max_pos[1]
+        self._pipe_out_pos = [0, 0]
         self._pipe_angle = 0
-        self._pipe_length = 70
+        self._pipe_length = 50
         self._grenade = Grenade(screen, min_pos=(0,0), max_pos=(1280,520), backfire=reverse)
 
 
@@ -29,21 +30,9 @@ class Tank(BaseObject):
         self._grenade.draw()
 
         self._screen.blit(self._image, (self._pos_x, self._pos_y))
-        start_pos_y = self._pos_y + 62
-        if self._reverse:
-            start_pos_x = self._pos_x + 72
-            actual_angle = 180 + self._pipe_angle
-        else:
-            start_pos_x = self._pos_x + 105
-            actual_angle = - self._pipe_angle
+        start_pos, end_pos = self.get_pipe_coord()
 
-        angle_rad = math.radians(actual_angle)    
-        end_pos = (
-            start_pos_x + self._pipe_length * math.cos(angle_rad),
-            start_pos_y + self._pipe_length * math.sin(angle_rad)
-        )
-        start_pos = (start_pos_x, start_pos_y)
-        pygame.draw.line(self._screen, (0, 0, 0), start_pos, end_pos, 10)
+        pygame.draw.line(self._screen, (0,0,0), start_pos, end_pos, 5)
 
 
     def pipe_angle(self, delta_angle):
@@ -53,6 +42,24 @@ class Tank(BaseObject):
         elif new_angle > 90:
             new_angle = 90
         self._pipe_angle = new_angle
+
+
+    def get_pipe_coord(self):
+        start_pos_y = self._pos_y + 62
+        if self._reverse:
+            start_pos_x = self._pos_x + 72
+            actual_angle = 180 + self._pipe_angle
+        else:
+            start_pos_x = self._pos_x + 105
+            actual_angle = -self._pipe_angle
+
+        angle_rad = numpy.radians(actual_angle)    
+        end_pos = (
+            start_pos_x + self._pipe_length * numpy.cos(angle_rad),
+            start_pos_y + self._pipe_length * numpy.sin(angle_rad)
+        )
+        start_pos = (start_pos_x, start_pos_y)
+        return start_pos, end_pos
 
 
     def move(self, delta_x=0, delta_y=0):
@@ -74,5 +81,6 @@ class Tank(BaseObject):
 
 
     def shoot(self):
-        self._grenade.shoot((self._pos_x + 100, self._pos_y + 62), self._pipe_angle)
+        _, end_pos = self.get_pipe_coord()
+        self._grenade.shoot(end_pos, self._pipe_angle)
         
