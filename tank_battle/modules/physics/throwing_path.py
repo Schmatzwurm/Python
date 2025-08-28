@@ -13,7 +13,7 @@ class ThrowingPath:
         self._start_pos = [0, 0]
         self._velocity = [0, 0]
         self._time_factor = 1
-        self._gravity = 9.81  # Gravity constant
+        self._gravity = 12.2  # Gravity constant
 
 
     def reset(self):
