@@ -35,9 +35,9 @@ class Game:
             elif action == 'r':
                 tank.move(5, 0)
             elif action == 'u':
-                tank.pipe_angle(5)
+                tank.pipe_angle(2)
             elif action == 'd':
-                tank.pipe_angle(-5)
+                tank.pipe_angle(-2)
             elif action == 'shoot':
                 tank.shoot()
                 
