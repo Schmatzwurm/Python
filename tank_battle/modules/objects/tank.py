@@ -22,7 +22,7 @@ class Tank(BaseObject):
         self._max_pos_y = max_pos[1]
         self._pipe_angle = 0
         self._pipe_length = 70
-        self._grenade = Grenade(screen)
+        self._grenade = Grenade(screen, backwards=reverse)
 
 
     def draw(self):
