@@ -1,5 +1,5 @@
 import time
-import math
+import numpy
 
 class ThrowingPath:
 
@@ -12,7 +12,7 @@ class ThrowingPath:
         self._max_pos = max_pos
         self._start_pos = [0, 0]
         self._velocity = [0, 0]
-        self._velocity_factor = 2
+        self._time_factor = 1
         self._gravity = 9.81  # Gravity constant
 
 
@@ -22,19 +22,20 @@ class ThrowingPath:
         self._velocity = [0, 0]
 
 
-    def throw(self, velocity, angle, start_pos):
+    def throw(self, velocity, angle, start_pos, time_factor=1):
         self._start_time = time.time()
-        self._angle = angle
+        self._angle = numpy.radians(angle)
         self._start_pos = start_pos
-        self._velocity[0] = velocity * self._velocity_factor * math.cos(self._angle)
-        self._velocity[1] = velocity * self._velocity_factor * math.sin(self._angle)
+        self._time_factor = time_factor
+        self._velocity[0] = velocity * numpy.cos(self._angle)
+        self._velocity[1] = velocity * numpy.sin(self._angle)
 
 
     def update_and_get(self):
         if self._start_time is None:
             return self._start_pos
         current_time = time.time()
-        elapsed_time = current_time - self._start_time
+        elapsed_time = self._time_factor * (current_time - self._start_time)
         return self.get_pos(elapsed_time)
     
 
@@ -61,6 +62,6 @@ class ThrowingPath:
 
     def get_y_pos(self, elapsed_time):
         factor = -1 if self._invert_y else 1
-        pos = (factor * (-0.5 * self._gravity * math.pow(elapsed_time, 2) + self._velocity[1] * elapsed_time)) + self._start_pos[1]
+        pos = (factor * (-0.5 * self._gravity * numpy.pow(elapsed_time, 2) + self._velocity[1] * elapsed_time)) + self._start_pos[1]
     
         return max(self._min_pos[1], min(self._max_pos[1], pos))
