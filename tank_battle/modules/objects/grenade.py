@@ -1,10 +1,10 @@
-from .base_object import BaseObject
+from .object import Object
 
 from ..physics.throwing_path import ThrowingPath
 
 import pygame
 
-class Grenade(BaseObject):
+class Grenade(Object):
     def __init__(self, screen, min_pos=(0,0), max_pos=(1280,720), size=(10,10), backfire=False):
         super().__init__(screen, size, 'cannon_ball.png')
         self._flying = False
@@ -13,13 +13,18 @@ class Grenade(BaseObject):
 
 
     def draw(self):
+        pos = self.get_pos()
+        if pos is None:
+            self._flying = False
+            self._throwing_path.reset()
+        else:
+            self._screen.blit(self._image, pos)
+
+    
+    def get_pos(self):
         if self._flying:
-            pos = self._throwing_path.update_and_get()
-            if pos is None:
-                self._flying = False
-                self._throwing_path.reset()
-            else:
-                self._screen.blit(self._image, pos)
+            return self._throwing_path.update_and_get()
+        return None
 
 
     def shoot(self, start_pos, angle):

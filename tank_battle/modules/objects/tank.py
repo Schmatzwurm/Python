@@ -1,4 +1,4 @@
-from .base_object import BaseObject
+from .object import Object
 from .grenade import Grenade
 
 from ..base import utils
@@ -6,7 +6,7 @@ from ..base import utils
 import pygame
 import numpy
 
-class Tank(BaseObject):
+class Tank(Object):
     def __init__(self, screen, size=(180, 150), 
                  init_pos=(0,0), min_pos=(0,0), max_pos=(1280,720), 
                  reverse=False):
@@ -14,6 +14,7 @@ class Tank(BaseObject):
         if reverse:
             self._image = pygame.transform.flip(self._image, True, False)
         self._reverse = reverse
+        self._size = size
         self._pos_x = init_pos[0]
         self._pos_y = init_pos[1]
         self._min_pos_x = min_pos[0]
@@ -33,6 +34,16 @@ class Tank(BaseObject):
         start_pos, end_pos = self.get_pipe_coord()
 
         pygame.draw.line(self._screen, (0,0,0), start_pos, end_pos, 5)
+
+
+    def collides_with(self, obj):
+        tank_rect = pygame.Rect(self._pos_x, self._pos_y, self._size[0], self._size[1])
+        obj_pos = obj.get_pos()
+        obj_size = obj.get_size()
+        if obj_pos is None:
+            return False
+        obj_rect = pygame.Rect(obj_pos[0], obj_pos[1], obj_size[0], obj_size[1])
+        return tank_rect.colliderect(obj_rect)
 
 
     def pipe_angle(self, delta_angle):

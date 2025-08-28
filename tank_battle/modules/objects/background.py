@@ -1,10 +1,10 @@
-from .base_object import BaseObject
+from .object import Object
 
 from ..base import utils
 
 import pygame
 
-class Background(BaseObject):
+class Background(Object):
     def __init__(self, screen):
         super().__init__(screen, (screen.get_width(), screen.get_height()), 'landscape.jpg')
         
