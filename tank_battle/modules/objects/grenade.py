@@ -5,10 +5,10 @@ from ..physics.throwing_path import ThrowingPath
 import pygame
 
 class Grenade(BaseObject):
-    def __init__(self, screen, backwards=False):
+    def __init__(self, screen):
         super().__init__(screen, (20,20), 'cannon_ball.png')
-        self._visible = False
-        self._throwing_path = ThrowingPath(min_pos=(0,0), max_pos=(1280, 720), invert_x=backwards, invert_y=True)
+        self._visible = True
+        self._throwing_path = ThrowingPath(min_pos=(0,0), max_pos=(1280, 720))
 
 
     def draw(self):
