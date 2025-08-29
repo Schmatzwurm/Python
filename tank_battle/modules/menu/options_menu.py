@@ -23,9 +23,9 @@ class OptionsMenu(BaseMenu):
                 pygame.mixer.music.play()
         if self._options.fullscreen_toggled():
             if self._options.fullscreen_enabled():
-                pygame.display.set_mode(self._screen.get_size(), pygame.FULLSCREEN)
-        #else:
-            #pygame.display.set_mode(self._screen.get_size())
+                pygame.display.set_mode(self._options.get_resolution(), pygame.FULLSCREEN)
+            else:
+                pygame.display.set_mode(self._options.get_resolution())
 
 
     def run(self):
