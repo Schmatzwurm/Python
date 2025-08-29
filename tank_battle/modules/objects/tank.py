@@ -7,7 +7,7 @@ import pygame
 import numpy
 
 class Tank(Object):
-    def __init__(self, screen, size=(180, 150), 
+    def __init__(self, screen, size=(60, 50), 
                  init_pos=(0,0), min_pos=(0,0), max_pos=(1280,720), 
                  reverse=False):
         super().__init__(screen, size, name='tank.png', pos=init_pos, min_pos=min_pos, max_pos=max_pos)
@@ -17,7 +17,7 @@ class Tank(Object):
         self._size = size
         self._pipe_out_pos = [0, 0]
         self._pipe_angle = 0
-        self._pipe_length = 50
+        self._pipe_length = 25
         self._grenade = Grenade(screen, min_pos=(0,0), max_pos=(1280,520), backfire=reverse)
 
 
@@ -51,12 +51,12 @@ class Tank(Object):
 
     def get_pipe_coord(self):
         start_pos = [0, 0]
-        start_pos[1] = self._pos[1] + 62
+        start_pos[1] = self._pos[1] + 13
         if self._reverse:
-            start_pos[0] = self._pos[0] + 72
+            start_pos[0] = self._pos[0] + 32
             actual_angle = 180 + self._pipe_angle
         else:
-            start_pos[0] = self._pos[0] + 105
+            start_pos[0] = self._pos[0] + 28
             actual_angle = -self._pipe_angle
 
         angle_rad = numpy.radians(actual_angle)    

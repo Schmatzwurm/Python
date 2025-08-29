@@ -55,11 +55,13 @@ class Game:
         ctrl1 = controller.Control(0)
         ctrl2 = controller.Control(1)
 
-        tank1 = tank.Tank(self._screen, init_pos=(0,400), max_pos=(1100, 400), reverse=False)
+        tank1 = tank.Tank(self._screen, 
+                          init_pos=(0,485), max_pos=(570,485), min_pos=(0,485), reverse=False)
         tank1.pipe_angle(45)
         tank1.draw()
 
-        tank2 = tank.Tank(self._screen, init_pos=(1100, 400), max_pos=(1100, 400), reverse=True)
+        tank2 = tank.Tank(self._screen, 
+                          init_pos=(1220,485), max_pos=(1220,485), min_pos=(650,485), reverse=True)
         tank2.pipe_angle(45)
         tank2.draw()
 

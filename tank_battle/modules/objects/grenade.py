@@ -6,7 +6,7 @@ import pygame
 
 class Grenade(Object):
     def __init__(self, screen, min_pos=(0,0), max_pos=(1280,720), size=(10,10), backfire=False):
-        super().__init__(screen, size, 'cannon_ball.png')
+        super().__init__(screen, size, 'cannon_ball.png', pos=(0,0), min_pos=min_pos, max_pos=max_pos)
         self._flying = False
         self._size = size
         self._throwing_path = ThrowingPath(min_pos=min_pos, max_pos=max_pos, invert_x=backfire, invert_y=True)

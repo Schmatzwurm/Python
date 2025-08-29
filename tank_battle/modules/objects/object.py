@@ -15,7 +15,7 @@ class Object:
 
 
     def draw(self):
-        self._screen.blit(self._image, self._pos)
+        self._screen.blit(image=self._image, dest=self._pos)
 
 
     def set_pos(self, pos):
