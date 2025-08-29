@@ -11,3 +11,10 @@ def get_res_file_path(file_name):
 
 def get_font(size): # Returns Press-Start-2P in the desired size
     return pygame.font.Font(get_res_file_path('font.ttf'), size)
+
+
+def saturate(values, min_values, max_values):
+    saturated = []
+    for i in range(len(values)):
+        saturated.append(max(min_values[i], min(max_values[i], values[i])))
+    return saturated
